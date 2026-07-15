@@ -48,3 +48,4 @@ The dashboard focuses on a focused triage path rather than broad CRM functionali
 - Add virtualized lists for high-volume inboxes and pagination/cursor support.
 - Support live updates, SLA countdowns, bulk actions, and an audit timeline.
 - Expand automated unit, accessibility, and end-to-end test coverage.
+# Coversation-inbox
