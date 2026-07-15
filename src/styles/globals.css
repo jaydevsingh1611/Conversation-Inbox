@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply border-line; }
+  body { @apply m-0 bg-canvas font-sans text-ink antialiased; }
+  button, input, textarea { font: inherit; }
+  button:focus-visible, input:focus-visible, textarea:focus-visible { @apply outline-none ring-2 ring-teal-600 ring-offset-2; }
+}
+
+* { scrollbar-width: thin; scrollbar-color: #cbd3d8 transparent; }
+*::-webkit-scrollbar { width: 5px; height: 5px; }
+*::-webkit-scrollbar-thumb { border-radius: 20px; background: #cbd3d8; }
