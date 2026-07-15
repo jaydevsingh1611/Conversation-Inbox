@@ -5,11 +5,31 @@ import { App } from './App'
 import './styles/globals.css'
 
 async function enableMocking() {
-  if (import.meta.env.DEV) {
-    const { worker } = await import('./mocks/browser')
-    return worker.start({ onUnhandledRequest: 'bypass' })
-  }
+  const { worker } = await import('./mocks/browser')
+
+  await worker.start({
+    onUnhandledRequest: 'bypass',
+    serviceWorker: {
+      url: '/mockServiceWorker.js',
+    },
+  })
 }
 
-const client = new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } } })
-enableMocking().then(() => ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><QueryClientProvider client={client}><App /></QueryClientProvider></React.StrictMode>))
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+})
+
+enableMocking().then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <QueryClientProvider client={client}>
+        <App />
+      </QueryClientProvider>
+    </React.StrictMode>
+  )
+})
